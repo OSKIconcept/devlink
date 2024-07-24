@@ -1,11 +1,37 @@
+"use client";
+
 import envelop from "@/assets/lock.svg";
 import lock from "@/assets/ph_lock-key-fill.svg";
+import { register } from "@/firebase";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const Create = () => {
+  const router = useRouter();
+
+  const [email, setEmail] = useState("");
+
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      await register(email, password);
+      router.push("/");
+    } catch (err) {
+      console.log("err", err);
+      setError(err.code);
+    }
+  };
+
   return (
     <>
+      {error && <div>erorr</div>}
       <div className="flex flex-col gap-[40px] md:p-[40px] md:bg-[#FFFFFF] text-[#333333]    rounded-2xl ">
         <div className="text-left flex flex-col gap-[8px]">
           <h2 className="text-[24px] md:text-[32px] font-bold pb-[8px]">
@@ -16,7 +42,7 @@ const Create = () => {
           </p>
         </div>
 
-        <form action="">
+        <form onSubmit={handleSubmit} action="">
           <div className=" gap-[24px] flex flex-col w-full ">
             <div>
               <label htmlFor="">
@@ -30,6 +56,8 @@ const Create = () => {
                   className="absolute ml-3 pointer-events-none w-[16px]"
                 />
                 <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="px-[16px] py-[12px] border border-[#D9D9D9] rounded-lg w-full focus:outline-none focus:border-[#633CFF] focus:shadow-4xl pr-3 pl-9 "
                   type="text"
                   placeholder="e.g. alex@email.com"
@@ -50,6 +78,8 @@ const Create = () => {
                   className="absolute ml-3 pointer-events-none w-[16px]"
                 />
                 <input
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="px-[16px] py-[12px] border border-[#D9D9D9] rounded-lg w-full focus:outline-none focus:border-[#633CFF] focus:shadow-4xl pr-3 pl-9 "
                   type="text"
                   placeholder="At least 8 characters"

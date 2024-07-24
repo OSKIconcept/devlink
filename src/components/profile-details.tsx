@@ -12,7 +12,7 @@ export const ProfileDetails = () => {
             <div className="flex flex-col gap-[8px] justify-center items-center">
               {" "}
               <Image src={pic_purple} alt="purple" className="w-[40px]" />
-              <p className="text-[#633CFF] font-medium">+Upload Image</p>
+              <p className="text-[#633CFF] font-medium">+Upload span</p>
             </div>
           </div>
           <p className="text-left  md:ml-[24px] basis-1/3 pt-[8px]">
