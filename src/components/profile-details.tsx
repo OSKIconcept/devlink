@@ -60,7 +60,7 @@ export const ProfileDetails = () => {
             <input
               className="px-[16px] py-[12px] border border-[#D9D9D9] rounded-lg focus:outline-none focus:border-[#633CFF] focus:shadow-inner md:w-2/3 w-full   "
               type="text"
-              placeholder="e.g. Appleseed"
+              placeholder="e.g Appleseed"
               name="name"
             />
           </div>
