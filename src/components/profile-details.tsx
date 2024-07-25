@@ -1,7 +1,29 @@
+"use client";
+
 import Image from "next/image";
 import pic_purple from "@/assets/pic_purple.svg";
+import { db } from "@/firebase";
+import { collection, addDoc, doc } from "firebase/firestore";
+import { useState } from "react";
 
 export const ProfileDetails = () => {
+  const [fname, setFname] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const addPost = async (formData) => {
+    const collectionRef = collection(db, "details");
+
+    const userRef = doc(db, "details");
+
+    await addDoc(collectionRef, {
+      fname: formData.get("fname"),
+      name: formData.get("name"),
+      email: formData.get("email"),
+      user: userRef,
+    });
+  };
+
   return (
     <div className="text-[#737373] text-[12px] md:text-[16px] gap-[24px] flex flex-col">
       <div className="bg-[#FAFAFA] rounded-xl p-[20px]">
@@ -21,7 +43,7 @@ export const ProfileDetails = () => {
         </div>
       </div>
 
-      <div className="bg-[#FAFAFA] rounded-xl p-[20px]">
+      <form onSubmit={addPost} className="bg-[#FAFAFA] rounded-xl p-[20px]">
         <div className="flex flex-col gap-[12px] w-full">
           <div className="md:flex-row flex flex-col  justify-start md:justify-between md:items-center gap-[4px]">
             <p>First name*</p>
@@ -29,6 +51,7 @@ export const ProfileDetails = () => {
               className="px-[16px] py-[12px] border border-[#D9D9D9] rounded-lg focus:outline-none focus:border-[#633CFF] focus:shadow-inner md:w-2/3 w-full   "
               type="text"
               placeholder="e.g. John"
+              name="fname"
             />
           </div>
 
@@ -38,6 +61,7 @@ export const ProfileDetails = () => {
               className="px-[16px] py-[12px] border border-[#D9D9D9] rounded-lg focus:outline-none focus:border-[#633CFF] focus:shadow-inner md:w-2/3 w-full   "
               type="text"
               placeholder="e.g. Appleseed"
+              name="name"
             />
           </div>
 
@@ -47,9 +71,15 @@ export const ProfileDetails = () => {
               className="px-[16px] py-[12px] border border-[#D9D9D9] rounded-lg focus:outline-none focus:border-[#633CFF] focus:shadow-inner md:w-2/3 w-full   "
               type="text"
               placeholder="e.g. email@example.com"
+              name="email"
             />
           </div>
         </div>
+      </form>
+      <div className="  md:justify-end flex px-[40px] pt-[20%]">
+        <button className="disabled:bg-[#EFEBFF] disabled:text-opacity-50 px-[27px] py-[11px] cursor-pointer  w-full text-white bg-[#633CFF] rounded-lg mt-[40px]  md:w-[91px]  ">
+          Save
+        </button>
       </div>
     </div>
   );

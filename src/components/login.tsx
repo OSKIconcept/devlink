@@ -48,7 +48,8 @@ const Login = () => {
       await login(email, password);
       router.push("/customize");
     } catch (err) {
-      setError(err.code);
+      console.log("err", err);
+     
     }
   };
 

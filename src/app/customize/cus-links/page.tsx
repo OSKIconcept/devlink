@@ -5,7 +5,7 @@ import AddLink from "@/components/addlink";
 
 const CusLinks = () => {
   return (
-    <div className="mx-auto max-w-[1392px] justify-center items-center">
+    <div className=" mx-auto max-w-[1392px] justify-center items-center">
       <div className="flex  items-start justify-center mx-auto ">
         <div className="hidden lg:block px-[126.5px] py-[101.5px] mx-auto max-w-[560px] ">
           <Image src={black} alt="preview" className="" />
@@ -32,12 +32,6 @@ const CusLinks = () => {
                 <AddLink />
               </div>
             </div>
-          </div>
-
-          <div className="  md:justify-end flex px-[40px] pt-[20%]">
-            <button className="disabled:bg-[#EFEBFF] disabled:text-opacity-50 px-[27px] py-[11px] cursor-pointer  w-full text-white bg-[#633CFF] rounded-lg mt-[40px]  md:w-[91px]  ">
-              Save
-            </button>
           </div>
         </div>
       </div>

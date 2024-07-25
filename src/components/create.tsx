@@ -25,7 +25,6 @@ const Create = () => {
       router.push("/");
     } catch (err) {
       console.log("err", err);
-      setError(err.code);
     }
   };
 

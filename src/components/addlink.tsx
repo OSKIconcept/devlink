@@ -7,8 +7,20 @@ import lin from "@/assets/ph_link-bold.svg";
 import { useState } from "react";
 import vec from "@/assets/vector.svg";
 
+import { db } from "@/firebase";
+import { addDoc, collection } from "firebase/firestore";
+import { platform } from "os";
+
 const AddLink = () => {
   const [drop, setDrop] = useState(false);
+
+  const addPost = async (formData) => {
+    const collectionRef = collection(db, "posts");
+
+    addDoc(collectionRef, {
+      platform: formData.get("title"),
+    });
+  };
   return (
     <>
       <div className="bg-[#FAFAFA] mt-[24px] rounded-xl p-[20px] ">
@@ -21,8 +33,8 @@ const AddLink = () => {
           <div className="">
             <p className="text-[12px] font-bold pb-[4px]">Platform</p>
             <div
-              onClick={() => setDrop((drop) => !drop)}
-              className="w-full bg-white p-[16px] rounded-lg"
+              // onClick={() => setDrop((drop) => !drop)}
+              className="w-full bg-white px-[16px] py-[12px] rounded-lg border-[#D9D9D9] border"
             >
               <div className="flex justify-between items-center cursor-pointer">
                 <div className="flex gap-[12px]">
@@ -65,6 +77,12 @@ const AddLink = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="  md:justify-end flex px-[40px] pt-[20%]">
+        <button className="disabled:bg-[#EFEBFF] disabled:text-opacity-50 px-[27px] py-[11px] cursor-pointer  w-full text-white bg-[#633CFF] rounded-lg mt-[40px]  md:w-[91px]  ">
+          Save
+        </button>
       </div>
     </>
   );
