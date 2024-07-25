@@ -14,7 +14,7 @@ import { platform } from "os";
 const AddLink = () => {
   const [drop, setDrop] = useState(false);
 
-  const addPost = async (formData) => {
+  const addPost = async (formData: any) => {
     const collectionRef = collection(db, "posts");
 
     addDoc(collectionRef, {

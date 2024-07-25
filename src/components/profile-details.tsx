@@ -11,7 +11,7 @@ export const ProfileDetails = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
-  const addPost = async (formData) => {
+  const addPost = async (formData: any) => {
     const collectionRef = collection(db, "details");
 
     const userRef = doc(db, "details");
