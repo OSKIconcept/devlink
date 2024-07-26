@@ -9,6 +9,7 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyAJAVszWy-CEk_lYAPP68zjI3dKQUXmFDU",
   authDomain: "my-devlink.firebaseapp.com",
+  databaseURL: "https://my-devlink-default-rtdb.firebaseio.com",
   projectId: "my-devlink",
   storageBucket: "my-devlink.appspot.com",
   messagingSenderId: "1085388708565",

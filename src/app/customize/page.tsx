@@ -50,7 +50,7 @@ const Customize = () => {
           <div className=" md:justify-end flex px-[40px] mt-[17px]">
             <button
               //disabled="true"
-              className="disabled:bg-[#EFEBFF]  px-[27px] py-[11px] cursor-pointer  w-full text-white bg-[#633CFF] rounded-lg mt-[40px]  md:w-[91px]  "
+              className="disabled:bg-[#EFEBFF]  px-[27px] py-[11px] cursor-pointer  w-full text-white bg-[#633CFF] rounded-lg mt-[40px]  md:w-[91px] opacity-25  "
             >
               Save
             </button>

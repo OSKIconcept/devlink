@@ -80,13 +80,7 @@ const AddLink = () => {
         </div>
       </div>
 
-      <Link href="/profile">
-        <div className="  md:justify-end flex px-[40px] pt-[20%]">
-          <button className="disabled:bg-[#EFEBFF] disabled:text-opacity-50 px-[27px] py-[11px] cursor-pointer  w-full text-white bg-[#633CFF] rounded-lg mt-[40px]  md:w-[91px]  ">
-            Save
-          </button>
-        </div>
-      </Link>
+      
     </>
   );
 };

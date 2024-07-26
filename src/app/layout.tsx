@@ -1,11 +1,11 @@
 "use client";
 
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Instrument_Sans } from "next/font/google";
 import "./globals.css";
 // import { AUthProvider } from "./context/auth";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Instrument_Sans({ subsets: ["latin"] });
 
 // export const metadata: Metadata = {
 //   title: "Create Next App",

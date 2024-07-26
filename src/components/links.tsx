@@ -69,8 +69,8 @@ const LinkBar = () => {
           </Link>
         </div>
 
-        <div className="hover:bg-[#633CFF] hover:text-white ease-in-out duration-500 py-[11px] px-[16px] border border-[#633CFF] rounded-lg">
-          <Image src={eye} alt="" className="block md:hidden" />
+        <div className="hover:bg-[#633CFF] hover:text-white ease-in-out duration-500 py-[11px] px-[16px] border border-[#633CFF] rounded-lg ">
+          <Image src={eye} alt="" className="block md:hidden " />
           <p className="hidden md:block ">Preview</p>
         </div>
       </div>

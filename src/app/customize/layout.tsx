@@ -7,7 +7,7 @@ export default function CustomizeLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-[#EFEBFF] gap-[16px] justify-center items-center">
+      <body className=" gap-[16px] justify-center items-center">
         <LinkBar />
         {children}
       </body>

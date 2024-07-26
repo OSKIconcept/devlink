@@ -1,9 +1,23 @@
+"use client";
+
 import click from "@/assets/click.svg";
 import Image from "next/image";
 import black from "@/assets/black.png";
 import AddLink from "@/components/addlink";
+import { useState } from "react";
+import Link from "next/link";
 
 const CusLinks = () => {
+  const [showLink, setShowLink] = useState(false);
+  const [newLinks, setNewLinks] = useState<number[]>([]);
+
+  function handleClick() {
+    setShowLink(true);
+    if (newLinks.length < 2) {
+      setNewLinks((links) => [...links, links.length + 1]);
+    } else return;
+  }
+
   return (
     <div className=" mx-auto max-w-[1392px] justify-center items-center">
       <div className="flex  items-start justify-center mx-auto ">
@@ -25,11 +39,31 @@ const CusLinks = () => {
               </div>
 
               <div>
-                <button className="px-[27px] py-[11px]  cursor-pointer  w-full text-[#633CFF] border-[#633CFF] border rounded-lg mb-[24px]  ">
+                <button
+                  onClick={handleClick}
+                  className="px-[27px] py-[11px]  cursor-pointer  w-full text-[#633CFF] border-[#633CFF] border rounded-lg mb-[24px] hover:text-white hover:bg-[#633CFF] ease-in-out duration-500  "
+                >
                   + Add new link
                 </button>
 
-                <AddLink />
+                {showLink && (
+                  <>
+                    <div>
+                      {" "}
+                      {newLinks.map((index) => (
+                        <AddLink key={index} />
+                      ))}
+                    </div>
+
+                    <div className="pt-[60px]  md:justify-end flex px-[40px]">
+                      <Link href="/profile">
+                        <button className="disabled:bg-[#EFEBFF] disabled:text-opacity-50 px-[27px] py-[11px] cursor-pointer  w-full text-white bg-[#633CFF] rounded-lg   md:w-[91px]  ">
+                          Save
+                        </button>
+                      </Link>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
