@@ -3,6 +3,7 @@
 import envelop from "@/assets/lock.svg";
 import lock from "@/assets/ph_lock-key-fill.svg";
 import { register } from "@/firebase";
+import { cn } from "@/utils";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -17,12 +18,18 @@ const Create = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setIsLoading(true);
     e.preventDefault();
     try {
       await register(email, password);
       router.push("/");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      setIsLoading(false);
     } catch (err) {
       console.log("err", err);
     }
@@ -110,7 +117,12 @@ const Create = () => {
               Password must contain at least 8 characters
             </p>
 
-            <button className="px-[11px] py-[16px] cursor-pointer  w-full text-white bg-[#251A1A] rounded-lg ">
+            <button
+              className={cn(
+                "px-[11px] py-[16px] cursor-pointer  w-full text-white bg-[#251A1A] rounded-lg ",
+                isLoading && "opacity-25"
+              )}
+            >
               Create new account
             </button>
 

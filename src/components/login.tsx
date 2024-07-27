@@ -3,6 +3,7 @@
 import envelop from "@/assets/lock.svg";
 import lock from "@/assets/ph_lock-key-fill.svg";
 import { login, register } from "@/firebase";
+import { cn } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -49,7 +50,6 @@ const Login = () => {
       router.push("/customize");
     } catch (err) {
       console.log("err", err);
-     
     }
   };
 
@@ -115,7 +115,10 @@ const Login = () => {
 
             <button
               disabled={isLoading}
-              className="px-[27px] py-[11px] cursor-pointer  w-full text-white bg-[#633CFF] rounded-lg "
+              className={cn(
+                "px-[27px] py-[11px] cursor-pointer  w-full text-white bg-[#633CFF] rounded-lg ",
+                isLoading && "opacity-25"
+              )}
             >
               Login
             </button>
