@@ -1,22 +1,34 @@
-import Image from "next/image";
-import name from "@/assets/devlinks.svg";
-import logo from "@/assets/logo.svg";
+import Link from "next/link";
 
-import Login from "@/components/login";
+export default async function Home() {
+  await new Promise((resolve) => setTimeout(resolve, 5000));
 
-export default function Home() {
   return (
-    <div className="h-screen p-[32px]  md:bg-[#FAFAFA] ">
-      <main className=" mx-auto justify-center  max-w-[476px]  ">
-        <div className="flex flex-col gap-[64px] w-full ">
-          <div className="flex gap-[7.5px] md:items-center md:justify-center">
-            <Image src={logo} alt="name" className="w-[40px]" />
-            <Image src={name} alt="name" className="w-[135px]" />
-          </div>
+    <div className="flex justify-center items-center mx-auto min-h-screen">
+      <div className="mx-auto flex flex-col justify-center items-center  ">
+        <h3 className="w-[300px] text-xl text-center font-medium">
+          Welcome to DevLinks, <br></br>{" "}
+          <small className="font-light text-sm">
+            Please Navigate with the links below
+          </small>
+        </h3>
 
-          <Login />
+        <div className="mt-5 flex gap-3">
+          <Link href="/create-account">
+            {" "}
+            <button className="text-white bg-blue-700 rounded-md py-2.5 px-6">
+              Get Started
+            </button>
+          </Link>
+
+          <Link href="/loginpage">
+            {" "}
+            <button className="text-white bg-blue-700 rounded-md py-2.5 px-6">
+              Login
+            </button>
+          </Link>
         </div>
-      </main>
+      </div>
     </div>
   );
 }

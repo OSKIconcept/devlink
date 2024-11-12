@@ -1,33 +1,40 @@
-// import { onAuthStateChanged } from "firebase/auth";
-// import firebase from "firebase/compat/app";
-// import { createContext, useContext, useEffect, useState } from "react";
-// import { auth } from "@/firebase";
+import React from "react";
 
-// type State = {
-//   currentUser: firebase.User;
-// };
+import { onAuthStateChanged, User } from "firebase/auth";
 
-// export const AuthContext = createContext<firebase.User | null>(null);
+import { createContext, useContext, useEffect, useState } from "react";
+import { auth } from "@/firebase";
 
-// export const AUthProvider = ({ children }: { children: React.ReactNode }) => {
-//   const [currentUser, SetCurrentUser] = useState<firebase.User | null>(null);
+type TContext = {
+  currentUser: User | null;
+  isLoading: boolean;
+};
 
-//   useEffect(() => {
-//     onAuthStateChanged(auth, (user) => {
-//       if (user) {
-//         SetCurrentUser({
-//           email: user.email,
-//           password: user.password,
-//         });
-//       } else {
-//         SetCurrentUser(null);
-//       }
-//     });
-//   }, []);
+export const AuthContext = createContext<TContext | null>(null);
 
-//   return (
-//     <AuthContext.Provider value={currentUser}>{children}</AuthContext.Provider>
-//   );
-// };
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [currentUser, SetCurrentUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-// export const useAuth = () => useContext(AuthContext);
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (authUser) => {
+      if (authUser) {
+        SetCurrentUser(authUser);
+      } else {
+        SetCurrentUser(null);
+      }
+      setIsLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const value = {
+    currentUser,
+    isLoading,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
+
+export const useAuth = () => useContext(AuthContext);

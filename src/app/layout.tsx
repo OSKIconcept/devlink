@@ -3,7 +3,8 @@
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
 import "./globals.css";
-// import { AUthProvider } from "./context/auth";
+import { Toaster } from "sonner";
+import { AuthProvider } from "./context/auth";
 
 const inter = Instrument_Sans({ subsets: ["latin"] });
 
@@ -19,9 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* <AUthProvider> */}
-      <body className={inter.className}>{children}</body>
-      {/* </AUthProvider> */}
+      <AuthProvider>
+        <body className={inter.className}>{children}</body>
+        <Toaster />
+      </AuthProvider>
     </html>
   );
 }

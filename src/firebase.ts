@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAJAVszWy-CEk_lYAPP68zjI3dKQUXmFDU",
@@ -21,7 +22,7 @@ import { getFirestore } from "firebase/firestore";
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
-export const register = (email: string, password: string) => {
+export const reg = (email: string, password: string) => {
   return createUserWithEmailAndPassword(auth, email, password).then(
     (response) => updateProfile(response.user, { displayName: email })
   );
@@ -37,5 +38,10 @@ export const logout = () => {
 };
 
 export const db = getFirestore(app);
+
+const imgDB = getStorage(app);
+const txtDB = getFirestore(app);
+
+export { imgDB, txtDB };
 
 export default app;

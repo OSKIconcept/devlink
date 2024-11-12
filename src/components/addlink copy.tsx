@@ -11,12 +11,11 @@ import { db } from "@/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { platform } from "os";
 import Link from "next/link";
-import { SelectScrollable } from "./dropdown";
 
 const AddLink = () => {
   const [drop, setDrop] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  // const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   const addPost = async (formData: any) => {
     const collectionRef = collection(db, "posts");
@@ -26,10 +25,10 @@ const AddLink = () => {
     });
   };
 
-  // const handleClick = (val) => {
-  //   setDrop(false);
-  //   setSelectedOption(val);
-  // };
+  const handleClick = (val) => {
+    setDrop(false);
+    setSelectedOption(val);
+  };
 
   return (
     <>
@@ -68,9 +67,23 @@ const AddLink = () => {
                   />
                 )}
               </div>
-            </div>
 
-            <SelectScrollable />
+              {/* {drop && (
+                <div className="w-full bg-white px-[16px] py-[12px] rounded-lg border-[#D9D9D9] border-b">
+                  <div className="flex gap-[12px]">
+                    <Image src={github} alt="github" />
+
+                    <p>Man</p>
+                  </div>
+
+                  <div className="flex gap-[12px]">
+                    <Image src={github} alt="github" />
+
+                    <p>Man</p>
+                  </div>
+                </div>
+              )} */}
+            </div>
           </div>
 
           <div className="">

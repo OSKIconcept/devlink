@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Customize = () => {
   return (
-    <div className="mx-auto max-w-[1392px] justify-center items-center">
+    <div className="mx-auto max-w-[1392px] justify-center items-center h-screen">
       <div className="flex  items-start justify-center mx-auto ">
         <div className="hidden lg:block px-[126.5px] py-[101.5px] mx-auto max-w-[560px]">
           <Image src={preview} alt="preview" className="w-[307px]" />
