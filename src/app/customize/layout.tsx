@@ -6,11 +6,9 @@ export default function CustomizeLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className=" gap-[16px] justify-center items-center">
-        <LinkBar />
-        {children}
-      </body>
-    </html>
+    <div className=" gap-[16px] justify-center items-center">
+      <LinkBar />
+      {children}
+    </div>
   );
 }
