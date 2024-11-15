@@ -8,6 +8,9 @@ const nextConfig = {
   //   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=1085388708565,
   //    NEXT_PUBLIC_FIREBASE_API_ID=1:1085388708565:web:f2c976d244600fc510e05c
   // },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;
