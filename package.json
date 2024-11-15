@@ -16,6 +16,7 @@
     "firebase": "^10.12.4",
     "lucide-react": "^0.454.0",
     "next": "14.2.5",
+    "next-cloudinary": "^6.16.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.52.2",

@@ -9,6 +9,8 @@ import { getDatabase, ref, set, push } from "firebase/database";
 import { cn } from "@/utils";
 // import { storage } from "@/firebase";
 
+import { CldImage } from "next-cloudinary";
+
 export const ProfileDetails = () => {
   const [fname, setFname] = useState("");
   const [name, setName] = useState("");
@@ -16,8 +18,8 @@ export const ProfileDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showComponent, setShowComponent] = useState(false);
 
-  //save file
-  const [file, setFile] = useState<File | null>(null);
+  //save file and show preview
+  const [file, setFile] = useState<File | undefined>();
 
   // const addPost = async () => {
   //   setIsLoading(true);
@@ -48,7 +50,7 @@ export const ProfileDetails = () => {
     };
 
     setFile(target.files[0]);
-    if (file === null) return;
+    if (typeof file === undefined) return;
 
     console.log("file", file);
   }
@@ -64,20 +66,26 @@ export const ProfileDetails = () => {
           <p className="basis-1/3">Profile picture</p>
 
           <div className="relative w-[193px] h-[193px]">
-            <input
-              accept="image/png, image/jpeg"
-              onChange={handleChange}
-              type="file"
-              className="cursor-pointer rounded-xl bg-[#EFEBFF] w-[193px] h-[193px] absolute z-[10] top-0 left-0 opacity-0 "
-              placeholder="yes"
-            />
-            <div className="rounded-xl bg-[#EFEBFF] w-[193px] h-[193px] p-[61px] flex items-center justify-center">
-              <div className="w-[116px] flex flex-col gap-[8px] justify-center items-center">
-                {" "}
-                <Image src={pic_purple} alt="purple" className="w-[40px]" />
-                <p className="text-[#633CFF] font-medium">+Upload pic</p>
+            {file ? (
+              <Image src={pic_purple} alt="image" />
+            ) : (
+              <div>
+                <input
+                  accept="image/png, image/jpeg"
+                  onChange={handleChange}
+                  type="file"
+                  className="cursor-pointer rounded-xl bg-[#EFEBFF] w-[193px] h-[193px] absolute z-[10] top-0 left-0 opacity-0 "
+                  placeholder="yes"
+                />
+                <div className="rounded-xl bg-[#EFEBFF] w-[193px] h-[193px] p-[61px] flex items-center justify-center">
+                  <div className="w-[116px] flex flex-col gap-[8px] justify-center items-center">
+                    {" "}
+                    <Image src={pic_purple} alt="purple" className="w-[40px]" />
+                    <p className="text-[#633CFF] font-medium">+Upload pic</p>
+                  </div>
+                </div>
               </div>
-            </div>
+            )}
           </div>
           <p className="text-left  md:ml-[24px] basis-1/3 pt-[8px]">
             Image must be below 1024x1024px. Use PNG or JPG format.
